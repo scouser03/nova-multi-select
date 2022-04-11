@@ -6,7 +6,7 @@
         v-model="value" 
         :options="options"
         :multiple="true"
-        label="tag" 
+        :label="name" 
         track-by="id"
         >
       </multiselect>
@@ -29,7 +29,8 @@ export default {
   data () {
       return {
         value: null,
-        options: this.field.data
+        options: this.field.data,
+        name: this.field.displayName
       }
     },
 
@@ -58,4 +59,17 @@ export default {
 </script>
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style>
+  .multiselect__tag, .multiselect__option--highlight{
+    background: #4099de;
+  }
+
+  .multiselect__tag-icon:hover{
+    background: #0281e2;
+  }
+
+  .multiselect__option--highlight:after{
+    background: #4099de;  
+  }
+</style>
 

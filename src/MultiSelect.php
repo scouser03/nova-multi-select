@@ -26,6 +26,11 @@ class MultiSelect extends Field
         return $this->withMeta(['table' => $table]);
     }
 
+    public function displayName($name = 'name')
+    {
+        return $this->withMeta(['displayName' => $name]);
+    }
+
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
         $requestValue = $request[$requestAttribute];
