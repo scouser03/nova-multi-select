@@ -43,7 +43,7 @@ class FieldServiceProvider extends ServiceProvider
             return;
         }
 
-        Route::middleware(['nova', 'api', Authorize::class])
+        Route::middleware(['nova', 'api'])
             ->prefix('nova-vendor/scouser03/multi-select')
             ->group(__DIR__.'/../routes/api.php');
     }
