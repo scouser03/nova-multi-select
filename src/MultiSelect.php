@@ -16,7 +16,11 @@ class MultiSelect extends Field
 
     public function model($model)
     {
-        $query = $model::query()->get();
+        if (is_string($model)){
+            $query = $model::query()->get();
+        }else{
+            $query = $model;    
+        }
 
         return $this->withMeta(['data' => $query]);
     }
