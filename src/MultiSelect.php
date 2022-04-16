@@ -30,6 +30,11 @@ class MultiSelect extends Field
         return $this->withMeta(['table' => $table]);
     }
 
+    public function indexUpdateable($status = false)
+    {
+        return $this->withMeta(['indexUpdateable' => $status]);
+    }
+
     public function displayName($name = 'name')
     {
         return $this->withMeta(['displayName' => $name]);
