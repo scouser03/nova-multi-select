@@ -48,7 +48,7 @@
                 v-for="item in data"
                 :key="item.id"
                 style="background-color:#4099de"
-                class="relative w-fit px-2 py-1 rounded-lg flex space-x-2 items-center mr-2"
+                class="multi-select-field-container relative w-fit px-2 py-1 rounded-lg flex space-x-2 items-center mr-2"
             >
                 <span class="relative btn text-white">{{ item[name] }}</span>
                 <div class="flex items-center">
@@ -178,6 +178,10 @@ export default {
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style>
+.multi-select-field-container {
+    white-space: nowrap;
+}
+
 .multiselect__tag,
 .multiselect__option--highlight {
     background: #4099de;
