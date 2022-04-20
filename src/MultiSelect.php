@@ -7,18 +7,20 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class MultiSelect extends Field
 {
-    /**
-     * The field's component.
-     *
-     * @var string
-     */
+
+    public function __construct($name, $attribute = null, callable $resolveCallback = null)
+    {
+        parent::__construct($name, $attribute, $resolveCallback);
+
+        $this->label();
+        $this->inputId();
+    }
+
     public $component = 'multi-select';
 
     public function model($model)
     {
-        
         $query = $model::query()->get();
-
         return $this->withMeta(['data' => $query]);
     }
 
@@ -32,14 +34,19 @@ class MultiSelect extends Field
         return $this->withMeta(['table' => $table]);
     }
 
-    public function indexUpdateable($status = false)
+    public function indexUpdateable($status)
     {
         return $this->withMeta(['indexUpdateable' => $status]);
     }
 
-    public function displayName($name = 'name')
+    public function label($label = 'name')
     {
-        return $this->withMeta(['displayName' => $name]);
+        return $this->withMeta(['label' => $label]);
+    }
+
+    public function inputId($id = 'id')
+    {
+        return $this->withMeta(['inputId' => $id]);
     }
 
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)

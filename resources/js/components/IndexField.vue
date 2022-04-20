@@ -75,7 +75,7 @@
                 :options="options"
                 :multiple="true"
                 :label="name"
-                track-by="id"
+                :track-by="inputId"
             ></multiselect>
         </div>
         <div v-if="select" @click="updated" class="cursor-pointer">
@@ -108,10 +108,15 @@ export default {
         return {
             select: false,
             data: this.field.value,
-            name: this.field.displayName,
+            name: this.field.label,
+            inputId: this.field.inputId,
             value: this.field.value,
             options: this.field.data,
         }
+    },
+
+    mounted() {
+        console.log(this.field)
     },
 
     methods: {
@@ -134,7 +139,7 @@ export default {
                 return
             }
 
-            const ids = this.value.map(obj => obj['id'])
+            const ids = this.value.map(obj => obj[this.inputId])
 
             Nova.request()
                 .post('/nova-vendor/scouser03/multi-select/update', {

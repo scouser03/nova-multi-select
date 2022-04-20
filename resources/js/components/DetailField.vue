@@ -31,7 +31,7 @@ export default {
     data(){
         return {
             data: this.field.value,
-            name: this.field.displayName
+            name: this.field.label
         }
     },
 
