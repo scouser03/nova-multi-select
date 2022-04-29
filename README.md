@@ -14,6 +14,7 @@ composer require scouser03/multi-select
 namespace App\Nova;
 
 use Spatie\TagsField\Tags;
+use Scouser03\MultiSelect\MultiSelect;
 
 class BlogPost extends Resource
 {

@@ -13,6 +13,7 @@ class MultiSelect extends Field
         parent::__construct($name, $attribute, $resolveCallback);
 
         $this->label();
+        
         $this->inputId();
     }
 

@@ -1,5 +1,13 @@
 <template>
     <div class="flex items-center">
+        <Modal
+            :item="deleteItem"
+            :label="name"
+            v-if="deleteModal"
+            @close="deleteModal = false"
+            @destroy="remove"
+        >
+        </Modal>
         <button
             v-if="select == false && field.indexUpdateable"
             @click="editHandler"
@@ -53,7 +61,7 @@
                 <span class="relative btn text-white">{{ item[name] }}</span>
                 <div class="flex items-center">
                     <svg
-                        @click="remove(item)"
+                        @click="removeConfirm(item)"
                         xmlns="http://www.w3.org/2000/svg"
                         class="h-4 w-4 ml-2 font-bold cursor-pointer hover:text-white"
                         viewBox="0 0 20 20"
@@ -99,10 +107,11 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
+import Modal from './Modal.vue'
 
 export default {
     props: ['resourceName', 'field', 'resource'],
-    components: { Multiselect },
+    components: { Multiselect, Modal },
 
     data() {
         return {
@@ -112,14 +121,22 @@ export default {
             inputId: this.field.inputId,
             value: this.field.value,
             options: this.field.data,
+            deleteModal: false,
+            deleteItem: null,
         }
     },
 
-    mounted() {
-        console.log(this.field)
-    },
-
     methods: {
+        removeConfirm(item) {
+            this.deleteItem = item
+            this.deleteModal = true
+        },
+
+        resetConfirm() {
+            this.deleteItem = null
+            this.deleteModal = false
+        },
+
         remove(item) {
             Nova.request()
                 .post('/nova-vendor/scouser03/multi-select/delete', {
@@ -128,9 +145,10 @@ export default {
                 })
                 .then(response => {
                     this.data = this.data.filter(mapItem => mapItem !== item)
-                    this.$toasted.show(`${item[this.name]} has been deleted`, {
+                    this.$toasted.show(`${item[this.name]} has been detached`, {
                         type: 'success',
                     })
+                    this.resetConfirm()
                 })
         },
 
