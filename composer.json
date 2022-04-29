@@ -1,9 +1,17 @@
 {
     "name": "scouser03/multi-select",
-    "description": "A Laravel Nova field.",
+    "description": "A Multiselect field for Laravel Nova",
+    "authors": [
+        {
+            "name": "Khvicha Ostatishvili",
+            "email": "khvicha.ostatishvili29@gmail.com"
+        }
+    ],
     "keywords": [
         "laravel",
-        "nova"
+        "nova",
+        "vue",
+        "multiselect"
     ],
     "license": "MIT",
     "require": {
